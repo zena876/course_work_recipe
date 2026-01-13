@@ -18,7 +18,7 @@ class Ingredient:
         """
         Возвращает название ингредиента.
 
-        :return self._name: str
+        :return self._name: название ингредиента
         """
         return self._name
 
@@ -28,7 +28,7 @@ class Ingredient:
         Устанавливает название ингредиента.
 
 
-        :param value: str
+        :param value: название ингредиента
         """
         if not value or not value.strip():
             raise ValueError("Название ингредиента не может быть пустым")
@@ -39,7 +39,8 @@ class Ingredient:
         """
         Возвращает количество ингредиента.
 
-        :return quantity: float"""
+        :return quantity: количество игредиента
+        """
         return self._quantity
 
     @quantity.setter
@@ -48,7 +49,7 @@ class Ingredient:
         Устанавливает количество ингредиента.
 
 
-        :param value: float
+        :param value: количество игредиента
         """
         if value < 0:
             raise ValueError("Количество не может быть отрицательным")
@@ -59,7 +60,7 @@ class Ingredient:
         """
         Возвращает единицу измерения.
 
-        :return unit: str
+        :return unit: единица измерения
 
         """
         return self._unit
@@ -68,7 +69,7 @@ class Ingredient:
     def unit(self, value: str):
         """Устанавливает единицу измерения.
 
-        :param value: str
+        :param value: единица измерения
         """
         self._unit = value
 
@@ -76,16 +77,16 @@ class Ingredient:
     def calories_per_unit(self) -> float:
         """
         Возвращает калории на единицу измерения.
-        :return calories_per_unit: float
+        :return calories_per_unit: калории
         """
         return self._calories_per_unit
 
     @calories_per_unit.setter
     def calories_per_unit(self, value: float):
         """
-        
-        :param value: 
-        :return: 
+        Преобразует ингредиент в словарь.
+        :param value: ингридиент
+        :return: ингридиент
         """
         if value < 0:
             raise ValueError("Калории не могут быть отрицательными")
@@ -93,15 +94,15 @@ class Ingredient:
 
     def total_calories(self) -> float:
         """
-        
-        :return: 
+        стоковое представление ингредиента
+        :return: ингредиент
         """
         return self._quantity * self._calories_per_unit
 
     def __str__(self) -> str:
         """
-            
-        :return: 
+            представление ингредиента для отладки
+        :return: ингредиент
         """
         return f"{self._name}: {self._quantity} {self._unit}"
 
@@ -113,8 +114,8 @@ class Ingredient:
 
     def to_dict(self) -> dict:
         """
-        
-        :return: 
+        Преобразует ингредиент в словарь.
+        :return: ингредиент
         """
         return {
             'name': self._name,
@@ -127,7 +128,7 @@ class Ingredient:
     def from_dict(cls, data: dict) -> 'Ingredient':
         """
         Создает ингредиент из словаря.
-        :param data: 
+        :param data: ингридиент
         """
         return cls(
             name=data['name'],
@@ -136,5 +137,6 @@ class Ingredient:
             calories_per_unit=data.get('calories_per_unit', 0.0)
 
         )
+
 
 
