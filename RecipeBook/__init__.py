@@ -9,4 +9,5 @@ from .ingredient import Ingredient
 from .recipe import Recipe
 from .cookbook import Cookbook
 
-all = ['Ingredient', 'Recipe', 'Cookbook']
+
+__all__ = ['Ingredient', 'Recipe', 'Cookbook']
