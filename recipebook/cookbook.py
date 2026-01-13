@@ -11,7 +11,8 @@ class Cookbook:
     """Класс для управления кулинарной книгой."""
 
     def __init__(self, filename: str = "cookbook.json"):
-        """Инициализирует кулинарную книгу.
+        """
+
         """
         self._recipes: List[Recipe] = []
 
@@ -19,7 +20,7 @@ class Cookbook:
     def recipes(self) -> List[Recipe]:
         """Возвращает список рецептов.
 
-        return список рецептов
+        :return List[Recipe]
         """
         return self._recipes
 
@@ -27,12 +28,14 @@ class Cookbook:
     def count(self) -> int:
         """Возвращает количество рецептов.
 
-        return количество рецептов
+        :return
         """
         return len(self._recipes)
 
     def add_recipe(self, recipe: Recipe) -> bool:
         """Добавляет рецепт в кулинарную книгу.
+
+        :return bool
         """
         if any(r.name.lower() == recipe.name.lower() for r in self._recipes):
             return False
@@ -42,6 +45,8 @@ class Cookbook:
 
     def remove_recipe(self, recipe_name: str) -> bool:
         """Удаляет рецепт по названию.
+
+        :return bool
         """
         for i, recipe in enumerate(self._recipes):
             if recipe.name.lower() == recipe_name.lower():
@@ -52,7 +57,7 @@ class Cookbook:
     def get_recipe(self, recipe_name: str) -> Optional[Recipe]:
         """Находит рецепт по названию.
 
-        return рецепт
+        :return Optional[Recipe]
         """
         for recipe in self._recipes:
             if recipe.name.lower() == recipe_name.lower():
@@ -62,7 +67,7 @@ class Cookbook:
     def find_recipes_by_ingredient(self, ingredient_name: str) -> List[Recipe]:
         """Находит рецепты, содержащие указанный ингредиент.
 
-        return рецепт с ингридиенотом
+        :return List[Recipe]
         """
         return [recipe for recipe in self._recipes
                 if recipe.contains_ingredient(ingredient_name)]
@@ -70,13 +75,15 @@ class Cookbook:
     def find_recipes_by_category(self, category: str) -> List[Recipe]:
         """Находит рецепты по категории.
 
-        return рецепт по категории
+        :return List[Recipe]
         """
         return [recipe for recipe in self._recipes
                 if recipe.category.lower() == category.lower()]
 
     def generate_shopping_list(self, recipe_names: List[str]) -> Dict[str, float]:
         """Генерирует список покупок для указанных рецептов.
+        :return Dict[str, float]
+
         """
         shopping_list = {}
 
@@ -93,6 +100,7 @@ class Cookbook:
 
     def calculate_total_calories(self, recipe_names: List[str]) -> float:
         """Вычисляет общую калорийность для указанных рецептов.
+        :return float
                                """
         total = 0.0
         for recipe_name in recipe_names:
@@ -102,14 +110,18 @@ class Cookbook:
         return total
 
     def get_all_categories(self) -> List[str]:
-        """Возвращает список всех категорий рецептов."""
+        """Возвращает список всех категорий рецептов.
+        :return List[str]
+        """
         categories = set()
         for recipe in self._recipes:
             categories.add(recipe.category)
         return list(categories)
 
     def __str__(self) -> str:
-        """Строковое представление кулинарной книги."""
+        """Строковое представление кулинарной книги.
+        :return str
+        """
         if not self._recipes:
             return "Кулинарная книга пуста"
 
@@ -119,7 +131,9 @@ class Cookbook:
         return result
 
     def print_shopping_list(self, recipe_names: List[str]):
-        """Печатает список покупок для указанных рецептов."""
+        """Печатает список покупок для указанных рецептов.
+        :return None
+        """
         shopping_list = self.generate_shopping_list(recipe_names)
 
         if not shopping_list:
@@ -129,6 +143,3 @@ class Cookbook:
         print("Список покупок:")
         for ingredient, quantity in shopping_list.items():
             print(f"{ingredient}: {quantity} г")
-
-
-
