@@ -8,11 +8,14 @@ from .ingredient import Ingredient
 
 
 class Cookbook:
-    """Класс для управления кулинарной книгой."""
+    """Класс для управления кулинарной книгой.
+    :return: класс для управления книгой
+    """
 
     def __init__(self, filename: str = "cookbook.json"):
         """
         Инициализирует кулинарную книгу.
+        :param recipes: кулинарная книга
         """
         self._recipes: List[Recipe] = []
 
@@ -144,4 +147,5 @@ class Cookbook:
         print("Список покупок:")
         for ingredient, quantity in shopping_list.items():
             print(f"{ingredient}: {quantity} г")
+
 
